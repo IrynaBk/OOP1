@@ -5,8 +5,9 @@
 
 class Enemy : public Creature {
 	public:
-		virtual void Greeting() {
-			std::cout <<name_<<" : "<< " à ÿ íà ó÷åí³ÿ ïð³åõàë" << std::endl;
+		// it's recommended to add override keyword to make the compilation fail in case you're not overriding correctly.
+		virtual void Greeting() override{ 
+			std::cout <<name_<<" : "<< " Ð° Ñ Ð½Ð° ÑƒÑ‡ÐµÐ½Ñ–Ñ Ð¿Ñ€Ñ–ÐµÑ…Ð°Ð»" << std::endl;
 		}
 		Enemy(int heath, int damage, std::string name) {
 			name_ = name;
@@ -22,8 +23,8 @@ class Enemy : public Creature {
 
 class Boss : public Enemy {
 	public:
-		virtual void Greeting() {
-			std::cout << name_ << " : " << "Ìóàõàõàõà, íàðåøò³ ïðîòèâíèê! " << std::endl;
+		virtual void Greeting() override{
+			std::cout << name_ << " : " << "ÐœÑƒÐ°Ñ…Ð°Ñ…Ð°Ñ…Ð°, Ð½Ð°Ñ€ÐµÑˆÑ‚Ñ– Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸Ðº! " << std::endl;
 		}
 		Boss(int heath, int damage, std::string name) {
 			name_ = name;
@@ -33,7 +34,7 @@ class Boss : public Enemy {
 			Greeting();
 		}
 		void SpecialAttack(Creature* enemy, int damage) {
-			std::cout << "Áîñ óëüòóº! Íà òåáå ëåòÿòü äåñÿòêè ñòð³ë, óõèëèòèñü íå âèéäå..." << std:: endl;
+			std::cout << "Ð‘Ð¾Ñ ÑƒÐ»ÑŒÑ‚ÑƒÑ”! ÐÐ° Ñ‚ÐµÐ±Ðµ Ð»ÐµÑ‚ÑÑ‚ÑŒ Ð´ÐµÑÑÑ‚ÐºÐ¸ ÑÑ‚Ñ€Ñ–Ð», ÑƒÑ…Ð¸Ð»Ð¸Ñ‚Ð¸ÑÑŒ Ð½Ðµ Ð²Ð¸Ð¹Ð´Ðµ..." << std:: endl;
 			(*enemy).getDamage(damage+5, enemy);
 		}
 		virtual void Attack(Creature* enemy, int damage) {

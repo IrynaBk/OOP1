@@ -16,6 +16,7 @@ class Hero : public Creature {
 				void generateNumber() {
 					number = 1+ rand() % 6;
 				}
+				// should be GetNumber since it's a getter
 				int ShowNumber() {
 					return number;
 				}
@@ -25,8 +26,8 @@ class Hero : public Creature {
 		};
 		Dice setOfDices[2];
 
-		virtual void Greeting() {
-			std::cout <<name_<<" : " << "ß ãîòîâèé äî ïğèãîä!" << std::endl;
+		virtual void Greeting() override{
+			std::cout <<name_<<" : " << "Ğ¯ Ğ³Ğ¾Ñ‚Ğ¾Ğ²Ğ¸Ğ¹ Ğ´Ğ¾ Ğ¿Ñ€Ğ¸Ğ³Ğ¾Ğ´!" << std::endl;
 		}
 		Hero(int heath, int damage, std::string name) {
 			name_ = name;
@@ -36,15 +37,15 @@ class Hero : public Creature {
 			Greeting();
 		}
 
-		int throwDices() { // ïî ëşäñüêè
+		int throwDices() { // Ğ¿Ğ¾ Ğ»ÑĞ´ÑÑŒĞºĞ¸
 			(setOfDices[0]).generateNumber();
-			cout << "Ïåğøèé êóáèê : " << (setOfDices[0]).ShowNumber() <<endl;
+			cout << "ĞŸĞµÑ€ÑˆĞ¸Ğ¹ ĞºÑƒĞ±Ğ¸Ğº : " << (setOfDices[0]).ShowNumber() <<endl;
 			(setOfDices[1]).generateNumber();
-			cout << "Äğóãèé êóáèê : " << (setOfDices[1]).ShowNumber() <<endl;
+			cout << "Ğ”Ñ€ÑƒĞ³Ğ¸Ğ¹ ĞºÑƒĞ±Ğ¸Ğº : " << (setOfDices[1]).ShowNumber() <<endl;
 
 			return (setOfDices[0]).ShowNumber() + (setOfDices[1]).ShowNumber();
 		}
 		~Hero(){
-			cout << "Ê³íåöü ãğè. Ãåğîé ñïî÷èâàº...ìîæëèâî, â³í ùå ïîâåğíåòüñÿ â íàñòóïí³é ëàáö³ " << endl;
+			cout << "ĞšÑ–Ğ½ĞµÑ†ÑŒ Ğ³Ñ€Ğ¸. Ğ“ĞµÑ€Ğ¾Ğ¹ ÑĞ¿Ğ¾Ñ‡Ğ¸Ğ²Ğ°Ñ”...Ğ¼Ğ¾Ğ¶Ğ»Ğ¸Ğ²Ğ¾, Ğ²Ñ–Ğ½ Ñ‰Ğµ Ğ¿Ğ¾Ğ²ĞµÑ€Ğ½ĞµÑ‚ÑŒÑÑ Ğ² Ğ½Ğ°ÑÑ‚ÑƒĞ¿Ğ½Ñ–Ğ¹ Ğ»Ğ°Ğ±Ñ†Ñ– " << endl;
 		}
 };

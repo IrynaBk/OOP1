@@ -13,7 +13,7 @@ int Choice(int n){
     int q=0;
     cin >> q;
     while (q > n || q < 1 || isalpha(q)) {
-        cout << "Òàêîãî âàð³àíòó íåìàº..." << endl;
+        cout << "Ð¢Ð°ÐºÐ¾Ð³Ð¾ Ð²Ð°Ñ€Ñ–Ð°Ð½Ñ‚Ñƒ Ð½ÐµÐ¼Ð°Ñ”..." << endl;
         cin >> q;
     }
     return q;
@@ -22,24 +22,24 @@ int Choice(int n){
 
  bool Fight(Hero* player, Creature* enemy) {
     while (1) {
-        cout << "Õ³ä ïðîòèâíèêà" << endl;
-        (*enemy).Attack(player, (*enemy).returnDamage()); 
+        cout << "Ð¥Ñ–Ð´ Ð¿Ñ€Ð¾Ñ‚Ð¸Ð²Ð½Ð¸ÐºÐ°" << endl;
+        (*enemy).Attack(player, (*enemy).returnDamage());
         if (!(player->liveStatus())) {
-            cout << "Ãåðîé ïîìåð..." << endl;
+            cout << "Ð“ÐµÑ€Ð¾Ð¹ Ð¿Ð¾Ð¼ÐµÑ€..." << endl;
             delete player;
             player = nullptr;
             return true;
         }
         int sum = player->throwDices();
         if (sum <  6) {
-            cout << "Ùîñü òè íå âëó÷íî á'ºø, íàíîñèø ò³ëüêè ïîëîâèíó óðîíó!" << endl; 
+            cout << "Ð©Ð¾ÑÑŒ Ñ‚Ð¸ Ð½Ðµ Ð²Ð»ÑƒÑ‡Ð½Ð¾ Ð±'Ñ”Ñˆ, Ð½Ð°Ð½Ð¾ÑÐ¸Ñˆ Ñ‚Ñ–Ð»ÑŒÐºÐ¸ Ð¿Ð¾Ð»Ð¾Ð²Ð¸Ð½Ñƒ ÑƒÑ€Ð¾Ð½Ñƒ!" << endl;
             (*player).Attack(enemy, (*player).returnDamage() / 2);
         }
         else {
             (*player).Attack(enemy, (*player).returnDamage());
         }
         if (!(enemy->liveStatus())) {
-            cout << "Óðà ïåðåìîãà!" << endl;
+            cout << "Ð£Ñ€Ð° Ð¿ÐµÑ€ÐµÐ¼Ð¾Ð³Ð°!" << endl;
             delete enemy;
             enemy = nullptr;
             return false;
@@ -52,30 +52,34 @@ int main()
 {
     srand(time(NULL));
     setlocale(LC_CTYPE, "ukr");
-    cout << "Â³òàþ â ìî¿é ãð³, ãîòîâèé ïî÷àòè?" << endl;
-    cout << "Ñïî÷àòêó, ñêàæè ñâîº ³ì'ÿ : " << endl;
+    cout << "Ð’Ñ–Ñ‚Ð°ÑŽ Ð² Ð¼Ð¾Ñ—Ð¹ Ð³Ñ€Ñ–, Ð³Ð¾Ñ‚Ð¾Ð²Ð¸Ð¹ Ð¿Ð¾Ñ‡Ð°Ñ‚Ð¸?" << endl;
+    cout << "Ð¡Ð¿Ð¾Ñ‡Ð°Ñ‚ÐºÑƒ, ÑÐºÐ°Ð¶Ð¸ ÑÐ²Ð¾Ñ” Ñ–Ð¼'Ñ : " << endl;
     string name;
     cin >> name;
     Hero *player = new Hero(50, 10, name);
 
-    cout << "Òè éøîâ ñîá³ ïî ë³ñó, ÿê ïîáà÷èâ ðîçäîð³ææÿ. Êóäè ï³äåø?  " << endl;
-    cout << "1) Íàë³âî" << endl;
-    cout << "2) Íàïðàâî" << endl;
-    cout << "3) Ïðÿìî " << endl;
-    
+    cout << "Ð¢Ð¸ Ð¹ÑˆÐ¾Ð² ÑÐ¾Ð±Ñ– Ð¿Ð¾ Ð»Ñ–ÑÑƒ, ÑÐº Ð¿Ð¾Ð±Ð°Ñ‡Ð¸Ð² Ñ€Ð¾Ð·Ð´Ð¾Ñ€Ñ–Ð¶Ð¶Ñ. ÐšÑƒÐ´Ð¸ Ð¿Ñ–Ð´ÐµÑˆ?  " << endl;
+    cout << "1) ÐÐ°Ð»Ñ–Ð²Ð¾" << endl;
+    cout << "2) ÐÐ°Ð¿Ñ€Ð°Ð²Ð¾" << endl;
+    cout << "3) ÐŸÑ€ÑÐ¼Ð¾ " << endl;
+
     int choice = Choice(3);
+    // helper methods for each of these cases would make it more readable
     if (choice == 1) {
-        cout << "ã³³é, òè çóñòð³â Îðêà ³ â³í òåáå âäàðèâ!" << endl;
-        Enemy* cmonia = new Enemy(10, 5, "÷ìîíÿ");
+        cout << "Ð³Ñ–Ñ–Ð¹, Ñ‚Ð¸ Ð·ÑƒÑÑ‚Ñ€Ñ–Ð² ÐžÑ€ÐºÐ° Ñ– Ð²Ñ–Ð½ Ñ‚ÐµÐ±Ðµ Ð²Ð´Ð°Ñ€Ð¸Ð²!" << endl;
+        Enemy* cmonia = new Enemy(10, 5, "Ñ‡Ð¼Ð¾Ð½Ñ");
         if (Fight(player, cmonia)) 
             return 0;
+        // You're now leaving this scope, and the pointer to your enemy is now lost, if he survived the fight now you have a memory leak.
+        // Always deallocate before losing reference to your objects, even though when your program exits, the OS will clean up, this is not a good habit.
+        // You can check if enemy is not null, deallocate here. Or just don't deallocate inside the fight, and only here.
     }
     else if (choice == 2) {
-        cout << "Òè íàñò³ëüêè çàõîïèâñÿ êðàñîþ óêðà¿íñüêîãî ë³ñó, ùî âïàâ â ÿìó....êèíü êóáèê, ùîá âèë³çòè" << endl;
+        cout << "Ð¢Ð¸ Ð½Ð°ÑÑ‚Ñ–Ð»ÑŒÐºÐ¸ Ð·Ð°Ñ…Ð¾Ð¿Ð¸Ð²ÑÑ ÐºÑ€Ð°ÑÐ¾ÑŽ ÑƒÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ¾Ð³Ð¾ Ð»Ñ–ÑÑƒ, Ñ‰Ð¾ Ð²Ð¿Ð°Ð² Ð² ÑÐ¼Ñƒ....ÐºÐ¸Ð½ÑŒ ÐºÑƒÐ±Ð¸Ðº, Ñ‰Ð¾Ð± Ð²Ð¸Ð»Ñ–Ð·Ñ‚Ð¸" << endl;
         (*player).getDamage(3, player);
         if (player->throwDices() < 8) {
-            cout << " ïîãàíèé ç òåáå ëàçóí, ìîæåø ïåðåêèíóòè îäèí êóáèê :) ";
-            cout << " ßêèé êóáèê ïåðåêèíåø? ";
+            cout << " Ð¿Ð¾Ð³Ð°Ð½Ð¸Ð¹ Ð· Ñ‚ÐµÐ±Ðµ Ð»Ð°Ð·ÑƒÐ½, Ð¼Ð¾Ð¶ÐµÑˆ Ð¿ÐµÑ€ÐµÐºÐ¸Ð½ÑƒÑ‚Ð¸ Ð¾Ð´Ð¸Ð½ ÐºÑƒÐ±Ð¸Ðº :) ";
+            cout << " Ð¯ÐºÐ¸Ð¹ ÐºÑƒÐ±Ð¸Ðº Ð¿ÐµÑ€ÐµÐºÐ¸Ð½ÐµÑˆ? ";
             switch (Choice(2))
             {
             default:
@@ -84,15 +88,15 @@ int main()
                 while ((*player).setOfDices[1].ShowNumber() + (*player).setOfDices[0].ShowNumber() <= 8) {
                     (*player).setOfDices[0].generateNumber();
                 }
-                cout << "Òè âèáèâ " << (*player).setOfDices[0].ShowNumber() << endl;
-                cout << "Óðàà, òè âèáðàâñÿ ç ÿìè!" << endl;
+                cout << "Ð¢Ð¸ Ð²Ð¸Ð±Ð¸Ð² " << (*player).setOfDices[0].ShowNumber() << endl;
+                cout << "Ð£Ñ€Ð°Ð°, Ñ‚Ð¸ Ð²Ð¸Ð±Ñ€Ð°Ð²ÑÑ Ð· ÑÐ¼Ð¸!" << endl;
                 break;
             case 2:
                 while ((*player).setOfDices[1].ShowNumber() + (*player).setOfDices[0].ShowNumber() <= 8) {
                     (*player).setOfDices[1].generateNumber();
                 }
-                cout << "Âèïàëî ÷èñëî " << (*player).setOfDices[1].ShowNumber() << endl;
-                cout << "Óðàà, òè âèáðàâñÿ ç ÿìè!" << endl;
+                cout << "Ð’Ð¸Ð¿Ð°Ð»Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ " << (*player).setOfDices[1].ShowNumber() << endl;
+                cout << "Ð£Ñ€Ð°Ð°, Ñ‚Ð¸ Ð²Ð¸Ð±Ñ€Ð°Ð²ÑÑ Ð· ÑÐ¼Ð¸!" << endl;
                 break;
 
             }
@@ -100,20 +104,20 @@ int main()
         }
     }
     else {
-        cout << "Òè éøîâ-éøîâ ñîá³ äàë³, àæ òóò â³ä÷óâ, ùî â òåáå ëåòèòü ñòð³ëà! Â òåáå ùå º ÷àñ óõèëèòèñü!!" << endl;
+        cout << "Ð¢Ð¸ Ð¹ÑˆÐ¾Ð²-Ð¹ÑˆÐ¾Ð² ÑÐ¾Ð±Ñ– Ð´Ð°Ð»Ñ–, Ð°Ð¶ Ñ‚ÑƒÑ‚ Ð²Ñ–Ð´Ñ‡ÑƒÐ², Ñ‰Ð¾ Ð² Ñ‚ÐµÐ±Ðµ Ð»ÐµÑ‚Ð¸Ñ‚ÑŒ ÑÑ‚Ñ€Ñ–Ð»Ð°! Ð’ Ñ‚ÐµÐ±Ðµ Ñ‰Ðµ Ñ” Ñ‡Ð°Ñ ÑƒÑ…Ð¸Ð»Ð¸Ñ‚Ð¸ÑÑŒ!!" << endl;
         if (player->throwDices() <= 7) {
-            cout << "Àó÷, òè íå âñòèã..." << endl;
+            cout << "ÐÑƒÑ‡, Ñ‚Ð¸ Ð½Ðµ Ð²ÑÑ‚Ð¸Ð³..." << endl;
             (*player).getDamage(5, player);
         }
         else {
-            cout << "ßêà ìàéñòåðí³ñòü!! Òè íå îòðèìóºø óðîí." << endl;
+            cout << "Ð¯ÐºÐ° Ð¼Ð°Ð¹ÑÑ‚ÐµÑ€Ð½Ñ–ÑÑ‚ÑŒ!! Ð¢Ð¸ Ð½Ðµ Ð¾Ñ‚Ñ€Ð¸Ð¼ÑƒÑ”Ñˆ ÑƒÑ€Ð¾Ð½." << endl;
         }
-        cout << "Ïîêè òè äóìàâ, çâ³äêè âèëåò³ëà ñòð³ëà, äî òåáå ï³äêðàëèñÿ 2 îðêè!!! Ïî÷èíàºòüñÿ á³éêà!" << endl;
-        Enemy* ork1 = new Enemy(15, 5, "÷ìîíÿ");
-        Enemy* ork2 = new Enemy(10, 5, "äðóã ÷ìîí³");
-        cout << "Âèáåðè, êîãî áóäåø áèòè ïåðøèì." << endl;
-        cout << "1) ÷ìîíÿ" << endl;
-        cout << "2) äðóã ÷ìîí³ " << endl;
+        cout << "ÐŸÐ¾ÐºÐ¸ Ñ‚Ð¸ Ð´ÑƒÐ¼Ð°Ð², Ð·Ð²Ñ–Ð´ÐºÐ¸ Ð²Ð¸Ð»ÐµÑ‚Ñ–Ð»Ð° ÑÑ‚Ñ€Ñ–Ð»Ð°, Ð´Ð¾ Ñ‚ÐµÐ±Ðµ Ð¿Ñ–Ð´ÐºÑ€Ð°Ð»Ð¸ÑÑ 2 Ð¾Ñ€ÐºÐ¸!!! ÐŸÐ¾Ñ‡Ð¸Ð½Ð°Ñ”Ñ‚ÑŒÑÑ Ð±Ñ–Ð¹ÐºÐ°!" << endl;
+        Enemy* ork1 = new Enemy(15, 5, "Ñ‡Ð¼Ð¾Ð½Ñ");
+        Enemy* ork2 = new Enemy(10, 5, "Ð´Ñ€ÑƒÐ³ Ñ‡Ð¼Ð¾Ð½Ñ–");
+        cout << "Ð’Ð¸Ð±ÐµÑ€Ð¸, ÐºÐ¾Ð³Ð¾ Ð±ÑƒÐ´ÐµÑˆ Ð±Ð¸Ñ‚Ð¸ Ð¿ÐµÑ€ÑˆÐ¸Ð¼." << endl;
+        cout << "1) Ñ‡Ð¼Ð¾Ð½Ñ" << endl;
+        cout << "2) Ð´Ñ€ÑƒÐ³ Ñ‡Ð¼Ð¾Ð½Ñ– " << endl;
         switch (Choice(2))
         {
         default:
@@ -121,14 +125,14 @@ int main()
         case 1:
             if (Fight(player, ork1))
                 return 0;
-            cout << "Ñêëàäíèé á³é...òåïåð ³íøèé..." << endl;
+            cout << "Ð¡ÐºÐ»Ð°Ð´Ð½Ð¸Ð¹ Ð±Ñ–Ð¹...Ñ‚ÐµÐ¿ÐµÑ€ Ñ–Ð½ÑˆÐ¸Ð¹..." << endl;
             if (Fight(player, ork2))
                 return 0;
             break;
         case 2:
             if (Fight(player, ork2))
                 return 0;
-            cout << "Íå òàê ³ ñêëàäíî, òåïåð ùå îäèí" << endl;
+            cout << "ÐÐµ Ñ‚Ð°Ðº Ñ– ÑÐºÐ»Ð°Ð´Ð½Ð¾, Ñ‚ÐµÐ¿ÐµÑ€ Ñ‰Ðµ Ð¾Ð´Ð¸Ð½" << endl;
             if (Fight(player, ork1))
                 return 0;
             break;
@@ -136,13 +140,13 @@ int main()
     }
 
 
-    cout << "Ï³ñëÿ òàêîãî ñêëàäíîãî äíÿ òè âèð³øèâ â³äïî÷èòè, àëå îïàíà.. ÿêèéñü îðê âèë³ç ç êóù³â. " << endl;
-    cout << "Â³í âèãëÿäàº ñèëüíèì... Öå æ áîñ! " << endl;
-    Boss* boss = new Boss(25, 10, "áîñÿðà");
+    cout << "ÐŸÑ–ÑÐ»Ñ Ñ‚Ð°ÐºÐ¾Ð³Ð¾ ÑÐºÐ»Ð°Ð´Ð½Ð¾Ð³Ð¾ Ð´Ð½Ñ Ñ‚Ð¸ Ð²Ð¸Ñ€Ñ–ÑˆÐ¸Ð² Ð²Ñ–Ð´Ð¿Ð¾Ñ‡Ð¸Ñ‚Ð¸, Ð°Ð»Ðµ Ð¾Ð¿Ð°Ð½Ð°.. ÑÐºÐ¸Ð¹ÑÑŒ Ð¾Ñ€Ðº Ð²Ð¸Ð»Ñ–Ð· Ð· ÐºÑƒÑ‰Ñ–Ð². " << endl;
+    cout << "Ð’Ñ–Ð½ Ð²Ð¸Ð³Ð»ÑÐ´Ð°Ñ” ÑÐ¸Ð»ÑŒÐ½Ð¸Ð¼... Ð¦Ðµ Ð¶ Ð±Ð¾Ñ! " << endl;
+    Boss* boss = new Boss(25, 10, "Ð±Ð¾ÑÑÑ€Ð°");
     if (Fight(player, boss)) {
         return 0;
     }
-    cout << "Áóëî ñêëàäíî." << endl;
+    cout << "Ð‘ÑƒÐ»Ð¾ ÑÐºÐ»Ð°Ð´Ð½Ð¾." << endl;
     delete player;
     player = nullptr;
 
