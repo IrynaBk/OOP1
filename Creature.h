@@ -16,13 +16,18 @@
 				std::cout << name_ << " : " << health_ << " HP" << std::endl;
 			}
 		public:	
-			void getDamage(int damage,Creature* creature) {
+			// takeDamage() would be a better description, 
+			// get misleads the reader to think its a getter function
+			void getDamage(int damage,Creature* creature) {		
 				health_ -= damage;
-				std::cout << name_ <<" îòðèìóº  -"<<damage <<"HP!" << std::endl;
+				std::cout << name_ <<" Ð¾Ñ‚Ñ€Ð¸Ð¼ÑƒÑ”  -"<<damage <<"HP!" << std::endl;
 				if (health_ <= 0) {
-					creature->health_ = 0;
+					// is there a reason for passing another pointer of Creature type?
+					// it seems that you're always passing a pointer to the calling object itself anyway
+					// but I'm guessing you're trying to mess with pointers to see how they work
+					creature->health_ = 0;												 
 					ShowHP();
-					std::cout << name_ << " : " << " áë......" << std::endl;
+					std::cout << name_ << " : " << " Ð±Ð»......" << std::endl;
 					creature->isAlive = false;
 					return;
 				}
@@ -31,9 +36,11 @@
 			virtual void Attack(Creature *enemy,int damage) {
 			 (*enemy).getDamage(damage, enemy);
 			}
-			int returnDamage() {
+			// getDamage()
+			int returnDamage() {	
 				return damage_;
 			}
+			// isAlive(), this is the naming convention when returning booleans
 			bool liveStatus() {
 				return this->isAlive;
 			}
